@@ -24,6 +24,7 @@ public class KafkaProducerSender {
     private final Map<String, Object> producerProps;
     private KafkaProducer producer;
 
+
     public KafkaProducerSender(Map<String, Object> producerProps) {
         this.producerProps = producerProps;
     }
@@ -44,6 +45,7 @@ public class KafkaProducerSender {
      * @date: 2021/7/8
      **/
     public Future send(String topic, String key, String content, Callback callback) {
+
         ProducerRecord<String, String> record = new ProducerRecord<>(topic, key, content);
         return producer.send(record, ((metadata, exception) -> {
             if (exception == null) {
